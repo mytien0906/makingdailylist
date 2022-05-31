@@ -13,7 +13,11 @@ export default function TimeTable() {
     () => JSON.parse(localStorage.getItem("items")) || []
   );
   const [itemsFilter, setItemsFilter] = useState([]);
+  const randomId = ()=>{
+    return `${Date.now()}${Math.floor(Math.random() * 100)}`;
+  }
   const [input, setInput] = useState({
+    id: randomId(),
     time: "Sáng",
     actname: "",
     status: "Vui vẻ",
@@ -69,11 +73,19 @@ export default function TimeTable() {
     setIsFilter(false);
   };
 
+  const onDelete = (index) => {
+      const newItems = [...items];
+      newItems.splice(index, 1);
+      setItems(newItems);
+  }
+  
   const onSort = () => {
     const result =  items.sort((item)=>{
       
     })
   };
+
+
   return (
     <div className="container">
       <div className="text-center">
@@ -119,6 +131,7 @@ export default function TimeTable() {
               items={isFilter ? itemsFilter : items}
               status={status}
               time={time}
+              onDelete={onDelete}
             />
           </div>
         </div>

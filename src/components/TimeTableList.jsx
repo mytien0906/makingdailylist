@@ -2,7 +2,7 @@ import React from "react";
 import TimeTableItem from "./TimeTableItem";
 
 export default function TimeTableList(props) {
-  const { items, status,time } = props;
+  const { items, status,time, onDelete} = props;
   return (
     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <table className="table table-bordered table-hover">
@@ -44,7 +44,7 @@ export default function TimeTableList(props) {
             <td />
           </tr>
           {items.map((item, index) => (
-            <TimeTableItem item={item} index={index} key={index} />
+            <TimeTableItem item={item} index={index} key={index} onDelete={()=>onDelete(index)} />
           ))}
         </tbody>
       </table>
