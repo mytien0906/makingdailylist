@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function TimeTitleItem(props) {
-  const { item, index, onDelete } = props;
+  const { item, index, onDelete, onSelfClick } = props;
   return (
     <tr>
       <td>{index+1}</td>
@@ -11,7 +11,7 @@ export default function TimeTitleItem(props) {
         <span className="label label-success">{item.status}</span>
       </td>
       <td className="text-center">
-        <button type="button" className="btn btn-warning" >
+        <button type="button" className="btn btn-warning" onClick={onSelfClick} >
           <span className="fa fa-pencil mr-3" />
           Sửa
         </button>

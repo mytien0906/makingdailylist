@@ -1,12 +1,12 @@
 import React from "react";
 
 export default function SortList(props) {
-  const { sortByName,input,onChange,onSort } = props;
+  const { sortByName,input,onSort } = props;
   return (
     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-2">
-      <select className="form-control btn-primary">
+      <select className="form-control btn-primary" onChange={onSort}>
         {sortByName.map((s, i) => (
-          <option value={input.sortAsc} key={s} onChange={onSort}>
+          <option value={s} key={s}>
             {s}
           </option>
         ))}

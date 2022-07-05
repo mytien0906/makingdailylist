@@ -2,7 +2,7 @@ import React from "react";
 import TimeTableItem from "./TimeTableItem";
 
 export default function TimeTableList(props) {
-  const { items, status,time, onDelete} = props;
+  const { items, status,time, onDelete, onSelfClick,onFilter } = props;
   return (
     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <table className="table table-bordered table-hover">
@@ -19,7 +19,7 @@ export default function TimeTableList(props) {
           <tr>
             <td />
             <td>
-              <select className="form-control">
+              <select name="time" className="form-control" onChange={onFilter}>
                 <option>Tất Cả</option>
                 {time.map((t, i) => (
                   <option value={t} key={t}>
@@ -32,7 +32,7 @@ export default function TimeTableList(props) {
               <input type="text" className="form-control" />
             </td>
             <td>
-              <select className="form-control">
+              <select name="status" className="form-control" onChange={onFilter}>
                 <option>Tất Cả</option>
                 {status.map((s, i) => (
                   <option value={s} key={s}>
@@ -44,7 +44,7 @@ export default function TimeTableList(props) {
             <td />
           </tr>
           {items.map((item, index) => (
-            <TimeTableItem item={item} index={index} key={index} onDelete={()=>onDelete(index)} />
+            <TimeTableItem item={item} index={index} key={index} onDelete={()=>onDelete(index)} onSelfClick={()=>onSelfClick(item.id)} />
           ))}
         </tbody>
       </table>

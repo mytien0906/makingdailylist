@@ -1,13 +1,18 @@
 import React from "react";
 
 export default function FormAdd(props) {
-  const { status, time, onSubmit, input, onChange,onReset } = props;
+  const { status, time, onSubmit, input, onChange, onReset, isEdit } = props;
 
-  
   return (
     <form onSubmit={onSubmit}>
       <label>Canh:</label>
-      <select name="time" className="form-control" required value={input.time} onChange={onChange}>
+      <select
+        name="time"
+        className="form-control"
+        required
+        value={input.time}
+        onChange={onChange}
+      >
         {time.map((t, i) => (
           <option value={t} key={t}>
             {t}
@@ -15,11 +20,24 @@ export default function FormAdd(props) {
         ))}
       </select>
       <div className="form-group">
+        <input type="hidden" name="id" value={input.id} />
         <label>Tên :</label>
-        <input name="actname" type="text" className="form-control" value={input.actname} onChange={onChange}/>
+        <input
+          name="actname"
+          type="text"
+          className="form-control"
+          value={input.actname}
+          onChange={onChange}
+        />
       </div>
       <label>Trạng Thái :</label>
-      <select name="status" className="form-control" required value={input.status} onChange={onChange}>
+      <select
+        name="status"
+        className="form-control"
+        required
+        value={input.status}
+        onChange={onChange}
+      >
         {status.map((s, i) => (
           <option value={s} key={s}>
             {s}
@@ -29,7 +47,7 @@ export default function FormAdd(props) {
       <br />
       <div className="text-center">
         <button type="submit" className="btn btn-warning">
-          Thêm
+        {isEdit ? 'Sửa' : 'Thêm'}
         </button>
         &nbsp;
         <button type="button" className="btn btn-danger" onClick={onReset}>
